@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html ng-app="fine-app">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Узнать штрафы</title>
+    <link href="/frontend/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container" ng-controller="FinesController as fines">
+    <div class="jumbotron">
+        <h1>Узнать штрафы</h1>
+
+        <form class="form">
+            <div class="form-group">
+
+
+                <label>Номер автомобиля</label>
+                <input class="form-control" type="text" ng-model="autoNumber" placeholder="р488ен 124"></div>
+
+            <button class="btn btn-primary" ng-click="check(autos, autoNumber)">Узнать штрафы</button>
+        </form>
+    </div>
+    <div class="panel panel-default" ng-repeat="(autoNumber, fines) in autos">
+        <div class="panel-body">
+            <h2>Штрафы автомобиля {{autoNumber}}</h2>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Дата</th>
+                    <th>Протокол</th>
+                    <th>Сумма</th>
+                </tr>
+                </thead>
+                <tbody ng-repeat="(protocol, fine) in fines">
+                <tr>
+                    <td>{{fine.date}}</td>
+                    <td>{{protocol}}</td>
+                    <td>{{fine.sum}}</td>
+                </tr>
+                </tbody>
+            </table>
+            <button class="btn btn-default" ng-click="remove(autos, autoNumber)">Убрать</button>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="/frontend/js/lib/angular.min.js"></script>
+<script src="/frontend/js/src/fine-app.js"></script>
+<script src="/frontend/js/src/controllers.js"></script>
+</body>
+</html>
