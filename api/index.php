@@ -7,4 +7,4 @@ $fines['18811234567890'] = (object) [
 ];
 
 header('Content-Type: application/json');
-echo json_encode($fines);
+echo json_encode([$fines]);

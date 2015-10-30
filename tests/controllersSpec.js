@@ -1,14 +1,18 @@
 describe('FinesController', function() {
     beforeEach(module('controllers'));
 
-    var $controller, $scope, httpBackend;
+    var $controller, $scope, httpBackend, ValidatorService;
 
     beforeEach(inject(function(_$controller_, $httpBackend){
         $controller = _$controller_;
         $scope = {};
+        ValidatorService = {
+            validateAutoNumber: function() {return true;}
+        };
         httpBackend = $httpBackend;
         $controller('FinesController', {
-            $scope: $scope
+            $scope: $scope,
+            ValidatorService: ValidatorService
         });
     }));
 
@@ -18,7 +22,7 @@ describe('FinesController', function() {
     });
 
     describe('$scope.autos', function() {
-        it('Свойство $scope.autos должно быть объектом', function() {
+        it('свойство $scope.autos должно быть объектом', function() {
             expect(angular.isObject($scope.autos)).toBeTruthy();
         });
     });

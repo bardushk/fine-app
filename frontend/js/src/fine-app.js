@@ -1,3 +1,4 @@
-angular.module('fine-app', [
-    'controllers'
-]);
+/**
+ * Главный модуль приложения.
+ */
+angular.module('fine-app', ['controllers', 'validator-service']);

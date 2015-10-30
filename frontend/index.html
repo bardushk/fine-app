@@ -13,9 +13,7 @@
         <h1>Узнать штрафы</h1>
 
         <form class="form">
-            <div class="form-group">
-
-
+            <div class="form-group" ng-class="autoNumber && !isValid(autoNumber)? 'has-error': ''">
                 <label>Номер автомобиля</label>
                 <input class="form-control" type="text" ng-model="autoNumber" placeholder="р488ен 124"></div>
 
@@ -51,5 +49,6 @@
 <script src="/frontend/js/lib/angular.min.js"></script>
 <script src="/frontend/js/src/fine-app.js"></script>
 <script src="/frontend/js/src/controllers.js"></script>
+<script src="/frontend/js/src/services.js"></script>
 </body>
 </html>

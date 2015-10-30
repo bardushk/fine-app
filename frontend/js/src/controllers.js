@@ -1,35 +1,10 @@
-angular.module('controllers', [])
-    .controller('FinesController', function($scope, $http) {
-        $scope.autos = {
-            'a001aa 116': {
-                '111111': {
-                    date: '2015-01-01',
-                    sum: 1000
-                },
-                '1112222': {
-                    date: '2015-01-01',
-                    sum: 1000
-                },
-                '113331': {
-                    date: '2015-01-01',
-                    sum: 1000
-                }
-            },
-            'b001bb 116': {
-                '111111': {
-                    date: '2015-01-01',
-                    sum: 1000
-                },
-                '1112222': {
-                    date: '2015-01-01',
-                    sum: 1000
-                },
-                '113331': {
-                    date: '2015-01-01',
-                    sum: 1000
-                }
-            }
-        };
+/**
+ * Модуль с контроллерами.
+ */
+angular.module('controllers', ['validator-service'])
+    .controller('FinesController', function($scope, $http, ValidatorService) {
+        $scope.autos = {};
+        $scope.isValid = ValidatorService.validateAutoNumber;
 
         /**
          * Удаляет автомобиль из списка.
@@ -48,6 +23,9 @@ angular.module('controllers', [])
          * @param autoNumber string - номер автомобиля
          */
         $scope.check = function(autos, autoNumber) {
+            if (!ValidatorService.validateAutoNumber(autoNumber)) {
+                return;
+            }
             return $http.get('/api', {params:  {auto_number: autoNumber}}).then(function(response){
                 autos[autoNumber] = response.data;
             });
